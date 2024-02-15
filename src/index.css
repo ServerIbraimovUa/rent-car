@@ -4,7 +4,7 @@
 
 @layer body {
   body {
-    @apply font-manrope text-sm bg-white text-text;
+    @apply font-manrope text-sm bg-white text-text overflow-x-hidden;
   }
 }
 
