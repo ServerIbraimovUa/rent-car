@@ -1,40 +1,36 @@
 import Select from 'react-select';
-import makeAnimated from 'react-select/animated';
 import carsName from '/src/db/makers.json';
 import carsPrice from '/src/db/price.json';
-// const groupBadgeStyles = {
-//   backgroundColor: '#ffffff',
-//   borderRadius: '14px',
-//   color: '#000000',
-//   display: 'inline-block',
-//   fontSize: 18,
-//   fontWeight: 500,
-//   lineHeight: '1.11',
-//   textAlign: 'center',
-// };
-const animatedComponents = makeAnimated();
-const Filters = () => {
+
+const Filters = ({ setQuery }) => {
+  const onSubmit = e => {
+    e.preventDefault();
+    const marka = e.target.elements.make.value;
+    // const price = e.target.elements.price.value;
+    setQuery(marka);
+  };
+  const onChange = e => {
+    setQuery(e.value);
+  };
   return (
     <>
-      <form className="flex items-end justify-center gap-[18px] mb-[50px]">
-        <label className="flex flex-col gap-[8px]">
+      <form
+        onSubmit={onSubmit}
+        className="flex desktop:flex-row desktop:items-end justify-center gap-[18px] mb-[50px] p-[8px] mobile:flex-col border rounded-[20px] border-gray-300 bg-[#a5c7ffd5]"
+      >
+        <label className="flex flex-col gap-[8px] desktop:w-[224px]">
           <span className="text-[#8A8A89]">Car brand</span>
-          <Select
-            closeMenuOnSelect={false}
-            components={animatedComponents}
-            isMulti
-            options={carsName}
-          />
+          <Select options={carsName} name="make" onChange={onChange} />
         </label>
-        <label className="flex flex-col gap-[8px]">
+        <label className="flex flex-col gap-[8px] desktop:w-[125px]">
           <span className="text-[#8A8A89]">Price/ 1 hour</span>
-          <Select options={carsPrice} />
+          <Select options={carsPrice} name="price" />
         </label>
-        <label className="flex flex-col gap-[8px]">
+        <label className="flex flex-col gap-[8px] desktop:w-[160px]">
           <span className="text-[#8A8A89]">Сar mileage / km</span>
           <Select options={carsPrice} />
         </label>
-        <label className="flex flex-col gap-[8px] self-end text-[#8a8a89]">
+        <label className="flex flex-col gap-[8px] text-[#8a8a89]">
           <Select options={carsPrice} />
         </label>
         <button

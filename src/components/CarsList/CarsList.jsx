@@ -1,20 +1,28 @@
 import { useEffect, useState } from 'react';
-import { useGetCarsQuery } from '../../redux/cars/cars.operations';
-import CarItem from '../CarItem/CarItem';
 
-const CardList = () => {
-  const [page, setPage] = useState(1);
+import CarItem from '../CarItem/CarItem';
+import Loading from '../Loading/Loading';
+
+const CardList = ({ setPage, data, isLoading, isFetching, query }) => {
+  // const [show, setShow] = useState(false);
   const [newData, setNewData] = useState([]);
   const [favorite, setFavorite] = useState(
     () => JSON.parse(localStorage.getItem('favorite')) ?? []
   );
-  const { data, isLoading } = useGetCarsQuery(page);
 
   useEffect(() => {
+    // const dataFilter = data?.some(
+    //   ({ make }) => !make.toLowerCase().includes(query.toLowerCase())
+    // );
+    // console.log(dataFilter);
+    // if (dataFilter && data) {
+    //   setShow(true);
+    //   setNewData(data);
+    // } else
     if (data) {
       setNewData(prev => [...prev, ...data]);
     }
-  }, [data]);
+  }, [data, query]);
 
   useEffect(() => {
     localStorage.setItem('favorite', JSON.stringify(favorite));
@@ -25,7 +33,7 @@ const CardList = () => {
   const addFavorite = id => {
     const carToAdd = newData.find(c => c.id === id);
     if (carToAdd) {
-      setFavorite(prevFavorite => [...prevFavorite, carToAdd]);
+      setFavorite(prevFavorite => [carToAdd, ...prevFavorite]);
     }
   };
 
@@ -34,7 +42,7 @@ const CardList = () => {
   };
 
   return isLoading ? (
-    <div>Loading....</div>
+    <Loading />
   ) : (
     <>
       <ul className="mb-[100px] grid  tablet:grid-cols-2 desktop:grid-cols-4 desktop:gap-y-[50px]  desktop:gap-[29px] tablet:gap-[20px] tablet:gap-y-[44px] mobile:gap-y-[38px]">
@@ -52,7 +60,7 @@ const CardList = () => {
         onClick={loadMore}
         className="block ml-auto mr-auto bg-transparent text-primary-blue hover:text-btn-hover font-manrope font-[500] text-[16px]"
       >
-        Load more
+        {isFetching ? 'Loading..' : 'Load more'}
       </button>
     </>
   );

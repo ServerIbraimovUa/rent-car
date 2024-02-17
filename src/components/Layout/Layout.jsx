@@ -3,7 +3,7 @@ import { NavLink, Outlet } from 'react-router-dom';
 const Layout = () => {
   return (
     <>
-      <header className=" border border-gray-400 bg-blue-200">
+      <header className=" border border-gray-300 bg-[#a5c7ffd5]">
         <div className="container">
           <nav className="flex items-center py-3 text-[18px] font-[500]">
             <NavLink to="/">
@@ -16,12 +16,12 @@ const Layout = () => {
             </NavLink>
             <ul className="flex items-center gap-3 ml-auto">
               <li>
-                <NavLink className="py-3" to="/catalog">
+                <NavLink className="py-3 hover:text-btn-hover" to="/catalog">
                   Catalog
                 </NavLink>
               </li>
               <li>
-                <NavLink className="py-3" to="/favorite">
+                <NavLink className="py-3 hover:text-btn-hover" to="/favorite">
                   Favorite
                 </NavLink>
               </li>

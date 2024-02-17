@@ -30,5 +30,16 @@ img {
 }
 
 .active {
-  color: blue;
+  color: #3470ff;
+}
+
+.home {
+  display: flex;
+  flex-direction: column;
+  min-height: 90vh;
+  background-image: url(./assets/bg.jpg);
+  background-repeat: no-repeat;
+  background-position: center;
+
+  background-size: cover;
 }

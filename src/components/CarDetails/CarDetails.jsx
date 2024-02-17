@@ -1,13 +1,10 @@
 function CarDetails({ car }) {
   const { img } = car;
+  const functional = [...car.accessories, ...car.functionalities];
   const mileage = car.mileage.toString().split('');
   return (
-    <div className=" h-[426px] flex flex-col relative">
-      <img
-        className="object-cover h-[268px] mb-[14px] rounded-xl"
-        src={img}
-        alt="car"
-      />
+    <div className="flex flex-col relative">
+      <img className="  mb-[14px] rounded-xl" src={img} alt="car" />
       <div className="flex mb-[8px] text-[16px] font-[500]">
         <h2>
           {car.make} <span className="text-primary-blue">{car.model}</span>,
@@ -30,23 +27,22 @@ function CarDetails({ car }) {
 
       <h3 className="mb-[24px] text-[14px]">{car.description}</h3>
 
-      <div>
+      <div className="mb-[24px]">
         <h3 className="mb-[8px] text-[14px]">
           Accessories and functionalities:
         </h3>
-        <div className="flex flex-wrap gap-x-[6px] h-[44px] mb-[24px]  text-[12px] text-secondary-text">
-          <span>{car.address}</span>
-          <span className="w-[0.5px] h-[16px] bg-color-after "></span>
-          <span>Id:{car.id}</span>
-          <span className="w-[0.5px] h-[16px] bg-color-after "></span>
-          <span>Year: {car.year}</span>
-          <span className="w-[0.5px] h-[16px] bg-color-after "></span>
-          <span>Type: {car.type}</span>
-          <span className="w-[0.5px] h-[16px] bg-color-after "></span>
-          <span>Fuel Consumption: {car.fuelConsumption}</span>
-          <span className="w-[0.5px] h-[16px] bg-color-after "></span>
-          <span>Engine Size: {car.engineSize}</span>
-        </div>
+        <ul className="flex flex-wrap gap-x-[12px] h-[44px] mb-[24px]  text-[12px] text-secondary-text">
+          {functional.map((item, idx) => {
+            return (
+              <li
+                key={idx}
+                className="after:absolute after:mx-[6px] after:w-[0.5px] after:h-[16px] after:bg-color-after"
+              >
+                <span>{item}</span>
+              </li>
+            );
+          })}
+        </ul>
       </div>
       <div className="mb-[24px]">
         <h3 className="mb-[15px] text-[14px]">Rental Conditions: </h3>
