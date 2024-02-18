@@ -1,8 +1,17 @@
-# React + Vite
+# Тестове завданя
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+#### Створити застосунок для компанії, що надає послуги надання в Україні автомобілів в оренду.
 
-Currently, two official plugins are available:
+## Критерії виконання
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+- Верстка фіксована в рх, семантична та валідна.
+- Обов’язкове використання Redux
+- Для запитів використовується бібліотека Axios
+- Пагінація реалізована на бекенді
+- Немає помилок в консолі браузера.
+- Інтерактивність працює відповідно до технічного завдання.
+- Код відформатовано та не містить невикористовуваного коду
+- В репозиторії має бути описаний README.md.
+- Проєкт задеплоїний на github pages або netlify.com.
+
+**[Back-End](https://mockapi.io/)**
