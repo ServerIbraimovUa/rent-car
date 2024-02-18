@@ -36,7 +36,7 @@ img {
 .home {
   display: flex;
   flex-direction: column;
-  min-height: 90vh;
+  min-height: calc(-60px + 100vh);
   background-image: url(./assets/bg.jpg);
   background-repeat: no-repeat;
   background-position: center;
