@@ -16,14 +16,18 @@ const Favorite = () => {
     <section className="py-[150px]">
       <div className="container">
         <ul className="mb-[100px] grid  tablet:grid-cols-2 desktop:grid-cols-4 desktop:gap-y-[50px]  desktop:gap-[29px] tablet:gap-[20px] tablet:gap-y-[44px] mobile:gap-y-[38px]">
-          {favorite?.map(car => (
-            <CarItem
-              key={car.id}
-              car={car}
-              setFavorite={setFavorite}
-              isFavorite={isFavorite(car.id)}
-            />
-          ))}
+          {favorite.length === 0 ? (
+            <h1 className="text-[34px] font-[600]">Empty..</h1>
+          ) : (
+            favorite?.map(car => (
+              <CarItem
+                key={car.id}
+                car={car}
+                setFavorite={setFavorite}
+                isFavorite={isFavorite(car.id)}
+              />
+            ))
+          )}
         </ul>
       </div>
     </section>

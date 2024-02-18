@@ -4,25 +4,26 @@ import CarItem from '../CarItem/CarItem';
 import Loading from '../Loading/Loading';
 
 const CardList = ({ setPage, data, isLoading, isFetching, query }) => {
-  // const [show, setShow] = useState(false);
   const [newData, setNewData] = useState([]);
   const [favorite, setFavorite] = useState(
     () => JSON.parse(localStorage.getItem('favorite')) ?? []
   );
 
   useEffect(() => {
-    // const dataFilter = data?.some(
-    //   ({ make }) => !make.toLowerCase().includes(query.toLowerCase())
-    // );
-    // console.log(dataFilter);
-    // if (dataFilter && data) {
-    //   setShow(true);
-    //   setNewData(data);
-    // } else
     if (data) {
+      if (query) {
+        setNewData(data);
+        return;
+      }
       setNewData(prev => [...prev, ...data]);
     }
-  }, [data, query]);
+  }, [data]);
+
+  useEffect(() => {
+    if (!query) {
+      setNewData([]);
+    }
+  }, [query]);
 
   useEffect(() => {
     localStorage.setItem('favorite', JSON.stringify(favorite));
@@ -56,12 +57,14 @@ const CardList = ({ setPage, data, isLoading, isFetching, query }) => {
           />
         ))}
       </ul>
-      <button
-        onClick={loadMore}
-        className="block ml-auto mr-auto bg-transparent text-primary-blue hover:text-btn-hover font-manrope font-[500] text-[16px]"
-      >
-        {isFetching ? 'Loading..' : 'Load more'}
-      </button>
+      {newData.length >= 12 && (
+        <button
+          onClick={loadMore}
+          className="block ml-auto mr-auto bg-transparent text-primary-blue hover:text-btn-hover font-manrope font-[500] text-[16px]"
+        >
+          {isFetching ? 'Loading..' : 'Load more'}
+        </button>
+      )}
     </>
   );
 };
